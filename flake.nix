@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "My basic nixos flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -11,9 +11,9 @@
       lib = nixpkgs.lib;
     in {
     nixosConfigurations = {
-      nixos_prueba = lib.nixosSystem {
+      my_nixos = lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./configuration.nix];
+        modules = [ ./my_nixos_gnm/configuration.nix];
 
       };
     };
