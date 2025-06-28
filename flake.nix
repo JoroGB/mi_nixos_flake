@@ -11,13 +11,24 @@
       lib = nixpkgs.lib;
     in {
     nixosConfigurations = {
-      my_nixos = lib.nixosSystem {
+      nixos_pc = lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./host/my_nixos_gnm/configuration.nix
-        	    ./host/my_nixos_gnm/hardware-configuration.nix
+        modules = [ ./host/my_nixos_gnm/pc/configuration.nix
+        	    ./host/my_nixos_gnm/pc/hardware-configuration.nix
         	    ];
 
       };
     };
+    
+     nixosConfigurations = {
+      nixos_laptop = lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./host/my_nixos_gnm/laptop/configuration.nix
+        	    ./host/my_nixos_gnm/laptop/hardware-configuration.nix
+        	    ];
+
+      };
+    };
+    
   };
 }
