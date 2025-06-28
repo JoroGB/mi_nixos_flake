@@ -37,7 +37,7 @@ echo
 echo "Escriba el nombre de la configuracion flake"
 read -r configuration;
 
-nixos-install --flake ./flake.nix#$configuration
+nixos-install --flake .#$configuration
 
 echo "instalacion finalizada posiblemente exitosa"
 
