@@ -10,12 +10,12 @@ read -r disco;
 #Create table
 parted /dev/"$disco" -- mklabel gpt
 
+# root partition
+parted /dev/"$disco" -- mkpart root ext4 512MB 
+
 # ESP EFI
 parted /dev/"$disco"  -- mkpart ESP fat32 1MB 512MB
 parted /dev/"$disco"  -- set 2 esp on
-
-# root partition
-parted /dev/"$disco" -- mkpart root ext4 512MB 
 
 echo "Particion exitosa"
 
