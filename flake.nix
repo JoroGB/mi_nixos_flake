@@ -13,7 +13,7 @@
     nixosConfigurations = {
       my_nixos = lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./my_nixos_gnm/configuration.nix];
+        modules = [ ./my_nixos_gnm/configuration.nix ./hardware-configuration.nix];
 
       };
     };
