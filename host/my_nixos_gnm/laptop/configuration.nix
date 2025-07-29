@@ -1,5 +1,5 @@
-{ config, lib, pkgs, ... }: 
- 
+{ config, lib, pkgs, ... }:
+
 
 {
   imports =
@@ -11,14 +11,21 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-   networking.hostName = "nixos"; # Define your hostname.
-  # Set your time zone.
+   networking = {
+     hostName = "nixos"; # Define your hostname.
+     wireless ={
+       enable = true;
+       networks."Mi Casa".psk = "irenef06";
+     };
+
+   };
+     # Set your time zone.
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
    i18n.defaultLocale = "en_US.UTF-8";
-       
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -29,7 +36,7 @@
   # services.xserver.enable = true;
 
 
-  
+
   #services.flatpak.enable = true;
   # Configure keymap in X11
    services.xserver.xkb.layout = "us";
@@ -55,6 +62,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.joronix = {
+     password = "fungy2005";
      isNormalUser = true;
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
@@ -63,8 +71,8 @@
      ];
    };
 
-   programs.firefox.enable = true;
-   programs.gnome-terminal.enable = true;
+  # programs.firefox.enable = true;
+  # programs.gnome-terminal.enable = true;
    nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -74,12 +82,12 @@
      wget
      git
      curl
-     google-chrome
-     
-     warp-terminal
+  #   google-chrome
+
+  #   warp-terminal
      rustup
      gcc
-     nixos-shell     
+  #   nixos-shell
      direnv
      vscode
    ];

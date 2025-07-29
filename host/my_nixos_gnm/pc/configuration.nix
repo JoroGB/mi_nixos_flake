@@ -1,5 +1,5 @@
-{ config, lib, pkgs, ... }: 
- 
+{ config, lib, pkgs, ... }:
+
 
 {
   imports =
@@ -18,7 +18,7 @@
 
   # Select internationalisation properties.
    i18n.defaultLocale = "en_US.UTF-8";
-       
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -28,8 +28,23 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
+  # enable nvidia drivers
 
-  
+  # Enable opengl
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia = {
+    modesetting.enable = true;
+
+    powerManagement.enable = true;
+
+    open = true;
+
+    nvidiaSettings = true;
+
+  };
+
+
   services.flatpak.enable = true;
   # Configure keymap in X11
    services.xserver.xkb.layout = "us";
@@ -75,11 +90,11 @@
      git
      curl
      google-chrome
-     
+
      warp-terminal
      rustup
      gcc
-     nixos-shell     
+     nixos-shell
      direnv
      vscode
    ];
