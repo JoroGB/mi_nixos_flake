@@ -18,24 +18,60 @@ parted /dev/"$disco" -- mkpart root ext4 512MB 100%
 
 echo "Particion exitosa"
 
-
-
 echo "Formateando"
 mkfs.fat -F 32 -n boot /dev/"$disco"1
 mkfs.ext4 -L nixos /dev/"$disco"2
-echo
+echo "================"
 echo "Formateo exitoso"
-echo
+echo "================"
 echo
 echo "Montando particiones"
+
 mount /dev/disk/by-label/nixos /mnt
 mkdir -p /mnt/boot
 mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
 echo "particiones montadas"
 echo
-echo "Escriba el nombre de la configuracion flake"
-read -r configuration;
 
-nixos-install --flake .#$configuration
+echo "========================================"
+echo "Desea instalar a traves del flake? (y/n)"
 
-echo "instalacion finalizada posiblemente exitosa"
+read -r with_flake;
+
+if [ "$with_flake"  == "y" ]
+then
+
+    echo "Escriba el nombre de la configuracion flake"
+    read -r configuration;
+
+
+    nixos-install --flake .#"$configuration"
+
+    echo "instalacion finalizada posiblemente exitosa"
+else
+    nixos-generate-config --root /mnt
+
+fi
+
+
+echo "copiar archivo? (y/n)"
+read -r with_file
+if [ "$with_file" == "y" ]
+then
+    echo "pc o laptop (pc/lp)"
+    read -r pc_lp
+    if [ "$pc_lp" == "pc" ]
+        then
+        cat ./host/my_nixos_gnm/pc/configuration.nix > /mnt/etc/nixos/configuration.nix
+    elif [ "$pc_lp" == "lp" ]
+        then
+          cat ./host/my_nixos_gnm/laptop/configuration.nix > /mnt/etc/nixos/configuration.nix
+    else
+      echo exit 1
+    fi
+
+fi
+
+
+
+
