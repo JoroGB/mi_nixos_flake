@@ -191,6 +191,21 @@ hardware.nvidia = {
      postgresql_17_jit
      jetbrains-toolbox
      zed-editor
+
+     # Dependencias necesarias
+     libXScrnSaver
+     alsaLib
+     libX11
+     libXcomposite
+     libXdamage
+     libXrandr
+     libXtst
+     gtk3
+     libvpx
+     nss
+     glib
+     mesa
+     bubblewrap  # Para sandbox
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
