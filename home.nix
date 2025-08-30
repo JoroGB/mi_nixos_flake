@@ -7,6 +7,12 @@
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
-    vscode-extensions.vadimcn.vscode-lldb  # <- codelldb para NixOS
+    discord-ptb
+    warp-terminal
+    pomodoro
+
+    brave
+    google-chrome
+    vivaldi
   ];
 }

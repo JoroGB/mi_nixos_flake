@@ -167,45 +167,21 @@ hardware.nvidia = {
      wget
      git
      curl
-     brave
-     google-chrome
-     vivaldi
      kitty
      xclip
      nodejs
      unzip
      lldb
-
-     discord-ptb
-     warp-terminal
-     pomodoro
      nixos-shell
      direnv
-     conda
      # steam removed from here since it's now configured via programs.steam
 
      docker_28
      python3
      vscode
-     rPackages.Anaconda
      postgresql_17_jit
      jetbrains-toolbox
      zed-editor
-
-     # Dependencias necesarias
-     libXScrnSaver
-     alsaLib
-     libX11
-     libXcomposite
-     libXdamage
-     libXrandr
-     libXtst
-     gtk3
-     libvpx
-     nss
-     glib
-     mesa
-     bubblewrap  # Para sandbox
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
