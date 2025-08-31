@@ -22,6 +22,37 @@
     in {
     packages.x86_64-linux.default = fenix.packages.x86_64-linux.minimal.toolchain;
     nixosConfigurations = {
+      nixos_pc_niri = lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+            ./host/my_nixos_niri/pc/configuration.nix
+            ./host/my_nixos_niri/pc/hardware-configuration.nix
+            {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.joronix = import ./host/my_nixos_niri/pc/home.nix;
+            }
+
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [ fenix.overlays.default ];
+              environment.systemPackages = with pkgs; [
+                   fenix.packages.x86_64-linux.complete.toolchain
+                   rust-analyzer-nightly
+                 ];
+
+                 # Para tener sesión de Niri en el login manager
+                 services.xserver.enable = true;  # si usas GDM o SDDM
+                 services.xserver.displayManager.gdm.enable = true;
+                 services.xserver.desktopManager.niri.enable = true;
+              }
+            )
+
+        ];
+
+
+      };
+
+
       nixos_pc_gnm = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ ./host/my_nixos_gnm/pc/configuration.nix
