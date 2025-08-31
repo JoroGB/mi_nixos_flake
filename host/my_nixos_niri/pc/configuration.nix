@@ -89,9 +89,14 @@ hardware.nvidia = {
 
 
 
-  services.flatpak.enable = true;
+  # programs.niri = {
+    # enable = true;
+  # };
+  # services.niri.xwayland.enable = true;
+
+  # services.flatpak.enable = true;
   # Configure keymap in X11
-   services.xserver.xkb.layout = "us";
+  #  services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
    # services.xserver = {
    # enable = true;
@@ -151,7 +156,7 @@ hardware.nvidia = {
   # loadModels = [ "llama3.2:3b" #"deepseek-r1:1.5b"
 # "gpt-oss:20b"
   # ];
-   };
+   # };
    nixpkgs.config.allowUnfree = true;
    environment.systemPackages = with pkgs; [
      # (fenix.complete.withComponents [
@@ -174,6 +179,9 @@ hardware.nvidia = {
      lldb
      nixos-shell
      direnv
+
+     niri
+     xwayland
      # steam removed from here since it's now configured via programs.steam
 
      docker_28
@@ -183,6 +191,8 @@ hardware.nvidia = {
      jetbrains-toolbox
      zed-editor
    ];
+
+  # services.niri.xwayland.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

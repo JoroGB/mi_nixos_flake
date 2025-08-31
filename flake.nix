@@ -27,7 +27,7 @@
         modules = [
             ./host/my_nixos_niri/pc/configuration.nix
             ./host/my_nixos_niri/pc/hardware-configuration.nix
-            {
+            home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.joronix = import ./host/my_nixos_niri/pc/home.nix;
@@ -39,11 +39,12 @@
                    fenix.packages.x86_64-linux.complete.toolchain
                    rust-analyzer-nightly
                  ];
+                # services.displayManager.gdm.enable = true;
 
                  # Para tener sesión de Niri en el login manager
-                 services.xserver.enable = true;  # si usas GDM o SDDM
-                 services.xserver.displayManager.gdm.enable = true;
-                 services.xserver.desktopManager.niri.enable = true;
+                 # services.xserver.enable = true;  # si usas GDM o SDDM
+                 # services.xserver.displayManager.gdm.enable = true;
+                 # services.xserver.desktopManager.niri.enable = true;
               }
             )
 

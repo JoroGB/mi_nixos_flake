@@ -3,9 +3,7 @@
 {
   home.username = "joronix";
   home.homeDirectory = "/home/joronix";
-  programs.niri = {
-    enable = true;
-  };
+
 
 
 
@@ -21,12 +19,15 @@
     vivaldi
 
     # Usabilidad
+    fuzzel
+    xdg-desktop-portal
+    xdg-desktop-portal-wlr
     mako
+    waybar
     wl-clipboard
     swaybg
     swayidle
     swaylock
-    waybar
     grim
     slurp
     alacritty
@@ -35,5 +36,6 @@
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    config.common.default = "*";
   };
 }
