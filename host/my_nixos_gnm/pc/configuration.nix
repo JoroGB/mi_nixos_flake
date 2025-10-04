@@ -116,7 +116,7 @@ hardware.nvidia = {
    users.users.joronix = {
      password = "fungy2005";
      isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
+     extraGroups = [ "wheel" "Docker" ]; # Enable 'sudo' for the user.
      packages = with pkgs; [
        tree
        nushell
@@ -124,6 +124,14 @@ hardware.nvidia = {
        zellij
      ];
    };
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
 
  # myslq service
    services.mysql = {
@@ -176,7 +184,6 @@ hardware.nvidia = {
      direnv
      # steam removed from here since it's now configured via programs.steam
 
-     docker_28
      python3
      vscode
      postgresql_17_jit
