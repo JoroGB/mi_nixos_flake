@@ -140,12 +140,12 @@ hardware.nvidia = {
 
    programs.firefox.enable = true;
    programs.gnome-terminal.enable = true;
-   programs.steam = {
-     enable = true;
-     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-     gamescopeSession.enable = true; # Enable GameScope session for Steam
-   };
+   # programs.steam = {
+     # enable = true;
+     # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+     # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+     # gamescopeSession.enable = true; # Enable GameScope session for Steam
+   # };
    nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -157,7 +157,7 @@ hardware.nvidia = {
 # "gpt-oss:20b"
   # ];
    # };
-   nixpkgs.config.allowUnfree = true;
+#   nixpkgs.config.allowUnfree = true;
    environment.systemPackages = with pkgs; [
      # (fenix.complete.withComponents [
       # "cargo"

@@ -160,7 +160,9 @@ hardware.nvidia = {
 # "gpt-oss:20b"
   ];
    };
-   nixpkgs.config.allowUnfree = true;
+
+
+#   nixpkgs.config.allowUnfree = true;
    environment.systemPackages = with pkgs; [
      # (fenix.complete.withComponents [
       # "cargo"
@@ -182,14 +184,17 @@ hardware.nvidia = {
      lldb
      nixos-shell
      direnv
-     # steam removed from here since it's now configured via programs.steam
 
+     # steam removed from here since it's now configured via programs.steam
      python3
      vscode
      postgresql_17_jit
      jetbrains-toolbox
      zed-editor
    ];
+
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

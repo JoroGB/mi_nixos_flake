@@ -19,74 +19,37 @@
 
    let
       lib = nixpkgs.lib;
-    in {
-    packages.x86_64-linux.default = fenix.packages.x86_64-linux.minimal.toolchain;
-    nixosConfigurations = {
-      nixos_pc_niri = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-            ./host/my_nixos_niri/pc/configuration.nix
-            ./host/my_nixos_niri/pc/hardware-configuration.nix
-            home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.joronix = import ./host/my_nixos_niri/pc/home.nix;
-            }
-
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [ fenix.overlays.default ];
-              environment.systemPackages = with pkgs; [
-                   fenix.packages.x86_64-linux.complete.toolchain
-                   rust-analyzer-nightly
-                 ];
-                # services.displayManager.gdm.enable = true;
-
-                 # Para tener sesión de Niri en el login manager
-                 # services.xserver.enable = true;  # si usas GDM o SDDM
-                 # services.xserver.displayManager.gdm.enable = true;
-                 # services.xserver.desktopManager.niri.enable = true;
-              }
-            )
-
-        ];
-
-
+      system = "x86_64-linux";
+      
+      # Crear pkgs con el overlay de fenix
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [ fenix.overlays.default ];
       };
-
-
+      
+    in {
+    nixosConfigurations = {
       nixos_pc_gnm = lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system pkgs;
+        specialArgs = { inherit fenix; };
         modules = [ ./host/my_nixos_gnm/pc/configuration.nix
         	        ./host/my_nixos_gnm/pc/hardware-configuration.nix
-                    home-manager.nixosModules.home-manager
-                    {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.users.joronix = import ./home.nix;
+        	        ./common_flakes/rust.nix
+        	        # Home manager
+        	        home-manager.nixosModules.home-manager
+        	        {
+                      home-manager.useGlobalPkgs = true;
+                      home-manager.useUserPackages = true;
+                      home-manager.extraSpecialArgs = { inherit fenix; };
+                      home-manager.users.joronix = import ./home/home.nix;
                     }
+        	        ];
 
-                    ({ pkgs, ... }: {
-                      nixpkgs.overlays = [ fenix.overlays.default ];
-                      environment.systemPackages = with pkgs; [
-                           fenix.packages.x86_64-linux.complete.toolchain
-                           rust-analyzer-nightly
-                         ];
-                      }
-                    )
-                  ];
-
-
-                                    };
-      nixos_laptop_gnm = lib.nixosSystem {
-        system = "x86_64-linux";
-            modules = [ ./host/my_nixos_gnm/laptop/configuration.nix
-       	    ./host/my_nixos_gnm/laptop/hardware-configuration.nix
-       	        ];
-    };
-
+      };
     };
 
 
-    };
+   };
 
 }
