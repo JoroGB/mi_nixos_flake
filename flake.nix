@@ -49,16 +49,16 @@
       nixos_pc_hp = lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit fenix; };
-        modules = [ ./host/my_nixos_gnm/pc/configuration.nix
-        	        ./host/my_nixos_gnm/pc/hardware-configuration.nix
-        	        ./common_flakes/rust.nix
+        modules = [ ./host/my_nixos_hp/configuration.nix
+        	          ./host/my_nixos_hp/hardware-configuration.nix
+        	          ./common_flakes/rust.nix
         	        # Home manager
         	        home-manager.nixosModules.home-manager
         	        {
                       home-manager.useGlobalPkgs = true;
                       home-manager.useUserPackages = true;
                       home-manager.extraSpecialArgs = { inherit fenix; };
-                      home-manager.users.joronix = import ./home/home_hp/home.nix;
+                      home-manager.users.joronix = import ./home_hp/home.nix;
                     }
         	        ];
 
