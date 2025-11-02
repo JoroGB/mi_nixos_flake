@@ -92,12 +92,6 @@ hardware.nvidia = {
     enable = true;
     withUWSM = true;
   };
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
 
   services.flatpak.enable = true;
   # Configure keymap in X11
@@ -194,7 +188,7 @@ hardware.nvidia = {
      direnv
      mpv
      foot
-     kytty
+     kitty
      waybar
      hyprpaper
 

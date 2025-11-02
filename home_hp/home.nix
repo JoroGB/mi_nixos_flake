@@ -37,14 +37,13 @@ in
       fi
     '';
   };
-  environment.variables = {
-    # Necesarias para Hyprland + NVIDIA
+  home.sessionVariables = {
     GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
+    WLR_EGL_STREAMS = "0";
     WLR_NO_HARDWARE_CURSORS = "1";
-    WLR_EGL_STREAMS = "0"; # fuerza GBM, evita fallback a EGLStreams
   };
+
 
   home.packages = with pkgs; [
       discord-ptb
