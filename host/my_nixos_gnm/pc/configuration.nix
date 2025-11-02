@@ -152,14 +152,14 @@ hardware.nvidia = {
    nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  services.ollama = {
-  enable = true;
-  acceleration = "cuda";
-  # Optional: preload models, see https://ollama.com/library
-  loadModels = [ "llama3.2:3b" #"deepseek-r1:1.5b"
-# "gpt-oss:20b"
-  ];
-   };
+#   services.ollama = {
+#   enable = true;
+#   acceleration = "cuda";
+#   # Optional: preload models, see https://ollama.com/library
+#   loadModels = [ "llama3.2:3b" #"deepseek-r1:1.5b"
+# # "gpt-oss:20b"
+#   ];
+#    };
 
 
 #   nixpkgs.config.allowUnfree = true;
