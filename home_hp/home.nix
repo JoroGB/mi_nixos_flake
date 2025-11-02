@@ -63,6 +63,7 @@ in
     nitch
     rofi
     pcmanfm
+    go
     (pkgs.writeShellApplication {
       name = "ns";
       runtimeInputs = with pkgs; [
