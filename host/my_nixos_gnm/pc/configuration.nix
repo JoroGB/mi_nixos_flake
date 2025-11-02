@@ -184,6 +184,7 @@ hardware.nvidia = {
      lldb
      nixos-shell
      direnv
+     mpv
 
      # steam removed from here since it's now configured via programs.steam
      python3
