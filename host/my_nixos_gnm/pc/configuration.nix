@@ -185,6 +185,7 @@ hardware.nvidia = {
      nixos-shell
      direnv
      mpv
+     cron
 
      # steam removed from here since it's now configured via programs.steam
      python3

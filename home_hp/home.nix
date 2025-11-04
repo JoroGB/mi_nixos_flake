@@ -76,11 +76,11 @@ in
     # })
   ];
 
-  xdg.configFile = builtins.mapAttrs
-    (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
-      recursive = true;
-    })
-    configs;
+  # xdg.configFile = builtins.mapAttrs
+  #   (name: subpath: {
+  #     source = create_symlink "${dotfiles}/${subpath}";
+  #     recursive = true;
+  #   })
+  #   configs;
 
 }
